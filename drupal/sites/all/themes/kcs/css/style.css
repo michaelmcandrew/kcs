@@ -1,0 +1,313 @@
+.clear { 
+	clear: both;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+a:link, a:visited { 
+	color: #242424;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: ;
+}
+
+input { 
+	padding: 1px 5px;
+	border: 1px solid #c2c2c2;
+	color: #a1a1a1;
+}
+
+a.btn, .btn { 
+	color: #fff;
+}
+
+.btn {
+	padding: 8px 15px 7px;
+	float: right;
+	background-color: #560251;
+	border: 0 none;	
+	font-size: 1em;
+	font-family: adrianne;
+}
+
+body { 
+	color: #302F30;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 62.5%;
+}
+
+#wrapper { 
+	width: 960px;
+	margin: 10px auto 0;
+}
+
+#header { 
+	height: 95px;
+	padding-top: 40px;
+	margin-bottom: 20px;
+	background: url(../images/world.png) no-repeat 510px 0;
+}
+
+#header_left {
+	width: 600px;
+	float: left;
+}
+
+#header h1 {
+	font-size: 3em;
+}
+
+#block-search-form {
+	float: right;
+}
+/*
+#block-search-form .form-type-textfield input {
+	width: 120px;
+	height: 18px;	
+}
+
+#block-search-form input#edit-submit {
+	text-indent: -9876px;
+	font-size: 0;
+}*/
+
+#top_nav { 
+	position: relative;
+}
+
+#main_menu {
+	height: 30px;
+	padding-left: 10px;
+}
+
+#top_nav li { 
+	float: left;
+	font-size: 1.6em;
+	line-height: 30px;
+}
+
+#main_menu li {
+	margin-right: 8px;
+}
+
+#main_menu li a { 
+	height: 20px;
+	padding: 6px 10px;
+	color: #fff;
+	background-color: #560251;
+	-khtml-border-radius-topleft: 6px;
+  	-khtml-border-radius-topright: 6px;
+  	-moz-border-radius-topleft: 6px;
+  	-moz-border-radius-topright: 6px;
+  	-webkit-border-top-left-radius: 6px;
+  	-webkit-border-top-right-radius: 6px;
+  	border-top-left-radius: 6px;
+  	border-top-right-radius: 6px;	
+}
+
+#main_menu li a.active {
+	background-color: #D0C6D2;
+	color: #242424;
+	font-weight: bold;
+}
+
+#secondary_menu {
+	width: 950px;
+	height: 30px;
+	padding-left: 10px;
+	position: absolute;
+	left: 0;
+	top: 30px;
+	background: url(../images/sub-nav-grad.png) repeat-x 0 0;
+}
+
+#secondary_menu li {
+	padding: 0 5px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+#main {
+	clear: both;
+	margin-top: 40px;
+	padding: 5px 0 40px 0;
+	border-top: 1px solid #560251;
+	font-size: 1.4em;
+}
+
+#content_wrap {
+	width: 700px;
+	padding: 10px;
+	float: left;
+}
+
+#hp_images {
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+#hp_images img, 
+#hp_left, 
+#hp_latest {
+	width: 340px;
+	float: left;
+}
+
+#hp_images img {
+	height: 227px;
+}
+
+#hp_images img.first, 
+#hp_left { 
+	margin-right: 20px;
+}
+
+#hp_left, 
+#hp_right {
+	width: 340px;
+	float: left;
+}
+
+.front h2#page-title,
+#hp_right h2 {
+	padding: 2px 0;
+	border-bottom: 1px solid #560251;
+	text-transform: uppercase;
+	font-size: 1.1em;
+}
+
+.hp-news-ticker, 
+.view-featured-content { 
+	margin: 10px 0 25px;
+}
+
+.hp-news-ticker .views-row {
+	background-color: #dadada;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+.hp-news-ticker .views-row h2 {
+	font-size: 1em;
+	text-transform: uppercase;
+}
+
+#hp_right .views-field-title {
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.views-field-field-image {
+	float: left;
+	margin: 0 5px 5px 0;
+}
+
+#e_news {
+	padding: 10px 5px 20px;
+	border-top: 1px solid #560251;
+	border-bottom: 1px solid #560251;
+}
+
+#e_news span {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 1.2em;
+}
+
+#e_news input#email { 
+	width: 228px;
+	height: 26px;
+}
+
+#e_news .signup {
+	padding: 7px 10px 6px;
+}
+
+#featured_article {
+	padding-right: 5px;
+}
+
+#featured_article img {
+	width: 120px;
+	height: 90px;
+	padding: 0 10px 10px 0;
+}
+
+#right_col, 
+#left_col { 
+	width: 230px;
+	min-height: 1px;
+	margin: 0 0 0 10px;
+	padding-top: 15px;
+	float: left;
+}
+
+.region-sidebar-second .block {
+	padding: 15px 5px 22px;
+	border-bottom: 1px solid #560251;
+	overflow: hidden;
+}
+
+.quote-block {
+	height: 225px;
+	position: relative;
+}
+
+.quote-block .views-field-field-testimonial {
+	padding: 15px 0 25px;
+	background: url(../images/quotes-left.png) no-repeat 0 0;
+}
+
+.quote-block .views-field-field-testimonial .field-content {
+	background: url(../images/quotes-right.png) no-repeat right bottom;	
+}
+
+#client_logo {
+	width: 120px;
+	margin: 0 auto;
+}
+
+.quote-block .view-footer {
+	position: absolute;
+	bottom: -10px;
+	right: 0;
+}
+
+.become_member { 
+	width: 195px;
+	margin-bottom: 15px;
+	text-align: center;
+	font-size: 1.4em;
+}
+
+#login p {
+	font-size: 1.1em;
+	margin-bottom: 10px;	
+}
+
+#login .text_input { 
+	width: 128px;
+	height: 20px;
+}
+
+#left_col {
+	margin: 0 10px 0 0;
+}
+
+
+
+
+
+
+
+
+
+
