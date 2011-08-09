@@ -264,6 +264,8 @@ body {
 .quote-block .views-field-field-testimonial {
 	padding: 15px 0 25px;
 	background: url(../images/quotes-left.png) no-repeat 0 0;
+	
+	word-wrap: break-word;
 }
 
 .quote-block .views-field-field-testimonial .field-content {
