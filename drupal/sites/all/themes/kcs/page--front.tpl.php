@@ -83,16 +83,17 @@
 		<?php print render($page['header']); ?>
 	</div>
 	
-	<?php if ($main_menu || $secondary_menu): ?>
-      <div id="top_nav"><div class="section">
-        <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main_menu'))); ?>
-        <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary_menu', 'class' => array('links', 'inline', 'clearfix')))); ?>
-      </div></div> <!-- /.section, /#navigation -->
-    <?php endif; ?>
-
+	
+	<div id="top_nav">
+    	<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main_menu'))); ?>
+		<div id="secondary-menu-wrap">
+        	<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary_menu', 'class' => array('links', 'inline', 'clearfix')))); ?>
+		</div>
+    </div>
 	
 	<?php print $messages; ?>
 
+	<div class="clear"></div>
 	<div id="main">
 		<div id="content_wrap">
 			<?php if ($page['hp_banner']): ?>

@@ -36,6 +36,9 @@ ol, ul {
 	margin: 0;
 	padding: 0;
 }
+ul.inline li {
+	padding: 0 !important;
+}
 blockquote, q {
 	quotes: none;
 }
