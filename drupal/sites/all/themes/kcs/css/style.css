@@ -28,6 +28,10 @@ a:hover {
 	color: #560251;
 }
 
+p {
+	margin: 8px 0;
+}
+
 input { 
 	padding: 1px 5px;
 	border: 1px solid #c2c2c2;
