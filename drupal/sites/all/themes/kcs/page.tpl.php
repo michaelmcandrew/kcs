@@ -121,7 +121,8 @@
 			London<br />
 			N1 6AH<br />
 			Tel. 44 (0) 207 250 8325<br />
-			Email: <a href="mailto:info@kcs-coalition.com">info@kcs-coalition.com</a>		
+			Email: <a href="mailto:info@kcs-coalition.com">info@kcs-coalition.com</a><br />
+			Registered charity number - 1142328		
 		</div>
 		<!-- <ul id="footer_list">
 				</ul> -->
