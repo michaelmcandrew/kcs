@@ -127,6 +127,22 @@
 		<div class="clear"></div>
 	</div>
 
-	<div id="footer"></div>
+	<div id="footer">
+		<div id="addresses">
+			Keeping Children Safe Coalition<br />
+			CAN Mezzanine<br />
+			49-51 East Road<br />
+			London<br />
+			N1 6AH<br />
+			Tel. 44 (0) 207 250 8325<br />
+			Email: <a href="mailto:info@kcs-coalition.com">info@kcs-coalition.com</a>		
+		</div>
+		<!-- <ul id="footer_list">
+				</ul> -->
+		<div id="credits">
+			All content &copy; Keeping Children Safe<br />
+			Website by <a href="http://www.thirdsectordesign.org" target="_blank">Third Sector Design</a>
+		</div>		
+	</div>
 	<div class="clear"></div>
 </div>
