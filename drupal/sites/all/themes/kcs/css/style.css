@@ -42,7 +42,8 @@ a.btn, .btn {
 	color: #fff;
 }
 
-.btn {
+.btn,
+#block-user-login input#edit-submit {
 	padding: 6px 15px 9px;
 	float: right;
 	background-color: #560251;
@@ -117,30 +118,6 @@ body {
 	overflow: hidden;
 }
 
-/*
-#block-search-form .form-type-textfield input {
-	width: 120px;
-	height: 18px;	
-}
-
-#block-search-form input#edit-submit {
-	text-indent: -9876px;
-	font-size: 0;
-}*/
-
-/*...HEADER...*/
-#header h1 {
-	font-size: 3em;
-}
-
-#header h2 {
-	font-style: italic;
-}
-
-#block-search-form {
-	float: right;
-}
-
 /*...NAVIGATION...*/
 #top_nav { 
 	position: relative;
@@ -208,6 +185,14 @@ body {
 }
 
 /*...TITLES...*/
+#header h1 {
+	font-size: 3em;
+}
+
+#header h2 {
+	font-style: italic;
+}
+
 .front h2#page-title,
 #hp_right h2 {
 	padding: 2px 0;
@@ -320,6 +305,65 @@ body {
 
 .view-featured-content .views-field-field-link a {
 	text-decoration: underline;
+}
+
+/*...LOGIN BLOCK...*/
+#block-user-login .form-item {
+	overflow: hidden;
+	margin: 0 0 10px 0;
+}
+
+#block-user-login label {
+	width: 75px;
+	float: left;
+	font-weight: normal;
+	line-height: 26px;
+}
+
+#block-user-login label span.form-required, 
+#block-user-login .item-list ul li.first  {
+	display: none;
+	visibility: hidden;
+}
+
+#block-user-login input#edit-name,
+#block-user-login input#edit-pass {
+	width: 130px;
+	height: 22px;
+	float: right;
+}
+
+#block-user-login .item-list ul li {
+	margin: 0 !important;
+	font-size: 0.8em;
+	float: right;
+}
+
+#block-user-login input#edit-submit {
+	color: #fff;
+	padding: 1px 10px 4px;
+	clear: right;
+	margin-top: 10px;
+}
+
+/*...SEARCH BLOCK...*/
+#block-search-form {
+	float: right;
+}
+
+#block-search-form .form-item {
+	margin: 0;
+	float: left;
+}
+
+#block-search-form input#edit-search-block-form--2 {
+	width: 136px;
+	height: 19px;
+}
+
+#block-search-form input#edit-submit {
+	padding: 5px 6px;
+	float: right;
 }
 
 /*...OTHER BLOCKS...*/
