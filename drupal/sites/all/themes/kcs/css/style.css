@@ -11,6 +11,14 @@
 	float: right;
 }
 
+img.right, .right img {
+	padding-left: 10px;
+}
+
+img.left, .left img {
+	padding-right: 10px;
+}
+
 a { 
 	color: #242424;
 	text-decoration: none;
@@ -299,12 +307,18 @@ body {
 
 /*...HOMEPAGE - FEATURE...*/
 .view-featured-content .views-field-field-link {
-	margin-top: 10px;
+	padding-top: 10px;
 	font-weight: bold;
+	clear: both;
 }
 
 .view-featured-content .views-field-field-link a {
 	text-decoration: underline;
+}
+
+.view-featured-content .views-field-field-media h2 {
+	display: none;
+	visibility: hidden;
 }
 
 /*...LOGIN BLOCK...*/
