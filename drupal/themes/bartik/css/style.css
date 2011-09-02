@@ -459,10 +459,6 @@ h1#site-name {
 #main-menu {
   clear: both;
 }
-#main-menu-links a {
-  color: #d9d9d9;
-  padding: 0.6em 1em 0.4em;
-}
 #main-menu-links {
   font-size: 0.929em;
   margin: 0;
@@ -484,14 +480,14 @@ h1#site-name {
   padding: 0 0.8em;
   text-decoration: none;
   text-shadow: 0 1px #eee;
-  -khtml-border-radius-topleft: 6px;
-  -khtml-border-radius-topright: 6px;
-  -moz-border-radius-topleft: 6px;
-  -moz-border-radius-topright: 6px;
-  -webkit-border-top-left-radius: 6px;
-  -webkit-border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  -khtml-border-radius-topleft: 8px;
+  -khtml-border-radius-topright: 8px;
+  -moz-border-radius-topleft: 8px;
+  -moz-border-radius-topright: 8px;
+  -webkit-border-top-left-radius: 8px;
+  -webkit-border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 #main-menu-links a:hover,
 #main-menu-links a:focus {
@@ -1434,9 +1430,6 @@ div.password-suggestions {
 }
 div.vertical-tabs .vertical-tabs-panes fieldset.vertical-tabs-pane {
   padding: 1em;
-}
-#forum tr td.forum {
-  padding-left: 35px;
 }
 #forum .name {
   font-size: 1.083em;
