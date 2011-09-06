@@ -510,13 +510,14 @@ body {
 }
 
 /*...NEWS PAGE...*/
-.news-page .views-row {
+.news-page .views-row,
+.view-members-area .views-row {
 	margin-bottom: 15px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #560251;
 }
 
-.news-page .views-field-title h2, h2#page-title {
+.news-page .views-field-title h2, h2#page-title, h2.title {
 	line-height: 1em;
 	margin-bottom: 15px;
 }
@@ -524,6 +525,11 @@ body {
 .post-date { 
 	font-size: 0.9em;
 	color: #939393;
+}
+
+/*...MEMBERS AREA...*/
+.view-members-area .views-row {
+	
 }
 
 
