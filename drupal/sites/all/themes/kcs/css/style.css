@@ -11,12 +11,26 @@
 	float: right;
 }
 
-img.right, .right img {
+img.right, 
+.right img, 
+.front .content img.right, 
+.front .content .right img{
 	padding-left: 10px;
 }
 
-img.left, .left img {
+img.left, 
+.left img,
+.front .content img.left, 
+.front .content .left img {
 	padding-right: 10px;
+}
+
+.content img { 
+	padding: 0 10px 10px 10px;
+}
+
+.front .content img { 
+	padding: 0;
 }
 
 a { 
@@ -78,13 +92,14 @@ body {
 	width: 960px;
 	margin: 10px auto 0;
 	font-family: helvetica, arial, sans-serif;
+	position: relative;
 }
 
 #header { 
 	height: 95px;
 	padding-top: 40px;
 	margin-bottom: 20px;
-	background: url(../images/world.png) no-repeat 510px 0;
+	background: url(../images/world.png) no-repeat 480px 0;
 }
 
 #header_left {
@@ -97,6 +112,7 @@ body {
 	margin-top: 10px;
 	padding: 5px 0 80px 0;
 	font-size: 1.4em;
+	line-height: 1.5em;
 }
 
 #content_wrap {
@@ -114,6 +130,11 @@ body {
 	float: left;
 }
 
+#right_col {
+	width: 220px;
+	padding-right: 10px;
+}
+
 #left_col {
 	margin: 0 10px 0 0;
 }
@@ -125,6 +146,37 @@ body {
 	font-size: 1.2em;
 	overflow: hidden;
 }
+
+/*...HEADER...*/
+#block-system-user-menu {
+	position: absolute;
+	top: -10px;
+	right: 0;
+	font-family: ff-tisa-web-pro, georgia, serif;
+	font-size: 1.6em;
+}
+
+#block-system-user-menu .content ul, 
+#block-system-user-menu .content ul li {
+	list-style: none outside none;
+	padding: 0;
+	display: inline;
+}
+
+#block-system-user-menu .content ul li a {
+	padding: 0 15px 4px 15px;
+	color: #fff;
+	background-color: #560251;
+	-khtml-border-radius-bottomleft: 6px;
+  	-khtml-border-radius-bottomright: 6px;
+  	-moz-border-radius-bottomleft: 6px;
+  	-moz-border-radius-bottomright: 6px;
+  	-webkit-border-bottom-left-radius: 6px;
+  	-webkit-border-bottom-right-radius: 6px;
+  	border-bottom-left-radius: 6px;
+  	border-bottom-right-radius: 6px;
+}
+
 
 /*...NAVIGATION...*/
 #top_nav { 
@@ -168,7 +220,7 @@ body {
 }
 
 #secondary-menu-wrap {
-	width: 950px;
+	width: 960px;
 	height: 30px;
 	clear: left;
 	background: url(../images/sub-nav-grad.png) repeat-x 0 0;
@@ -457,6 +509,22 @@ body {
 	text-decoration: underline;
 }
 
+/*...NEWS PAGE...*/
+.news-page .views-row {
+	margin-bottom: 15px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #560251;
+}
+
+.news-page .views-field-title h2, h2#page-title {
+	line-height: 1em;
+	margin-bottom: 15px;
+}
+
+.post-date { 
+	font-size: 0.9em;
+	color: #939393;
+}
 
 
 
