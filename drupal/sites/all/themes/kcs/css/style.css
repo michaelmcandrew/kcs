@@ -15,22 +15,22 @@ img.right,
 .right img, 
 .front .content img.right, 
 .front .content .right img{
-	padding-left: 10px;
+	margin-left: 10px;
 }
 
 img.left, 
 .left img,
 .front .content img.left, 
 .front .content .left img {
-	padding-right: 10px;
+	margin-right: 10px;
 }
 
 .content img { 
-	padding: 0 10px 10px 10px;
+	margin: 0 10px 10px 10px;
 }
 
 .front .content img { 
-	padding: 0;
+	margin: 0;
 }
 
 a { 
@@ -46,7 +46,7 @@ a:hover {
 	text-decoration: underline;
 }
 
-#content_wrap a {
+#content_wrap a, #left_col a {
 	color: #560251;
 }
 
@@ -57,6 +57,9 @@ p {
 input { 
 	padding: 1px 5px;
 	border: 1px solid #c2c2c2;
+}
+
+.form-item-search-block-form input {		
 	color: #a1a1a1;
 }
 
@@ -81,6 +84,14 @@ a.btn, .btn {
 h1, h2, h3, h4, h5, h6 {
 	font-family: ff-tisa-web-pro, georgia, serif;
 }
+
+ul li.leaf, ul li.expanded, ul li.collapsed,
+ul.menu li.leaf, ul.menu li.expanded, ul.menu li.collapsed {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+
 
 /*...STRUCTURE...*/
 body { 
@@ -161,6 +172,7 @@ body {
 	list-style: none outside none;
 	padding: 0;
 	display: inline;
+	margin-left: 4px;
 }
 
 #block-system-user-menu .content ul li a {
@@ -213,7 +225,7 @@ body {
   	border-top-right-radius: 6px;	
 }
 
-#main_menu li a.active {
+#main_menu li a.active-trail {
 	background-color: #D0C6D2;
 	color: #242424;
 	font-weight: bold;
@@ -253,11 +265,19 @@ body {
 }
 
 .front h2#page-title,
-#hp_right h2 {
+#hp_right h2, 
+#left_col #block-views-news-block h2 {
 	padding: 2px 0;
 	border-bottom: 1px solid #560251;
 	text-transform: uppercase;
 	font-size: 1.1em;
+	line-height: 1.1em;
+}
+
+#left_col #block-views-news-block .content h2 {
+	padding: 0;
+	border-bottom: 0 none;
+	text-transform: none;
 }
 
 
@@ -318,12 +338,6 @@ body {
 	font-size: 0.8em;
 }
 
-.news-page-view .views-row {
-	margin-bottom: 20px;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #560251;
-}
-
 .view-id-news .views-row ul.links {
 	margin-top: 10px;
 	display: block;
@@ -370,6 +384,10 @@ body {
 .view-featured-content .views-field-field-media h2 {
 	display: none;
 	visibility: hidden;
+}
+
+.view-id-featured_content img {
+	border: 1px solid #560251;
 }
 
 /*...LOGIN BLOCK...*/
@@ -459,9 +477,13 @@ body {
 	background: url(../images/quotes-right.png) no-repeat right bottom;	
 }
 
-.quote-block .see_members {
+.quote-block a.see_members {
 	margin-top: 25px;
 }
+
+#main a.see_members:hover {
+	text-decoration: none;
+} 
 
 /*.quote-block .view-footer {
 	position: absolute;
@@ -510,8 +532,13 @@ body {
 }
 
 /*...NEWS PAGE...*/
+.news-page-view .views-row,
 .news-page .views-row,
-.view-members-area .views-row {
+.view-members-area .views-row, 
+.news-archive .views-row, 
+.view-resources .views-row,
+.consultant-news .views-row, 
+.view-members .views-row {
 	margin-bottom: 15px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #560251;
@@ -522,15 +549,77 @@ body {
 	margin-bottom: 15px;
 }
 
-.post-date { 
+.news-page .views-field-title h2, 
+.view-members-area h2.title, 
+.news-archive .views-field-title h2, 
+.member-news-block h2 {
+	font-size: 1.2em;
+}
+
+.post-date, 
+.views-field-created { 
 	font-size: 0.9em;
 	color: #939393;
 }
 
-/*...MEMBERS AREA...*/
-.view-members-area .views-row {
-	
+.member-news-block .views-row {
+	background-color: #DADADA;
+    margin-bottom: 10px;
+	padding: 5px;
 }
+
+/*...BLOG MENU...*/
+#block-menu-menu-blog-menu {
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+
+#block-menu-menu-blog-menu .content li {
+	float: left;
+}
+
+#block-menu-menu-blog-menu .content li.first {
+	margin-right: 6px;
+}
+
+#block-menu-menu-blog-menu .content a, 
+#left_col a.submit-resource, 
+#edit-submit-resources, #edit-reset, 
+#left_col a.login-consultants {
+	padding: 1px 8px 5px;
+	background-color: #560251;
+	border: 0 none;	
+	font-size: 1em;
+	font-family: ff-tisa-web-pro;
+	-khtml-border-radius: 6px;
+  	-moz-border-radius: 6px;
+  	-webkit-border-radius: 6px;
+  	border-radius: 6px;
+	color: #fff;
+	float: left;
+}
+
+#edit-submit-resources, #edit-reset { 
+	height: 30px;
+}
+
+#left_col a.submit-resource { 
+	float: none; 
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+#block-menu-menu-blog-menu .content a:hover, 
+#left_col a.submit-resource:hover {
+	text-decoration: none;
+}
+
+
+.views-exposed-form .views-submit-button {
+	clear: left;
+}
+
+
 
 
 
