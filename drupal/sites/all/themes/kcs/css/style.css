@@ -85,6 +85,16 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: ff-tisa-web-pro, georgia, serif;
 }
 
+#main ul { 
+	list-style: disc inside none;
+	margin-left: 10px;
+}
+
+#main ol {
+	list-style: decimal inside none;
+	margin-left: 10px;
+}
+
 ul li.leaf, ul li.expanded, ul li.collapsed,
 ul.menu li.leaf, ul.menu li.expanded, ul.menu li.collapsed {
 	list-style: none outside none;
@@ -538,7 +548,8 @@ body {
 .news-archive .views-row, 
 .view-resources .views-row,
 .consultant-news .views-row, 
-.members-page .views-row {
+.members-page .views-row,
+.view-events .views-row {
 	margin-bottom: 15px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #560251;
