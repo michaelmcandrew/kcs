@@ -29,6 +29,10 @@ img.left,
 	margin: 0 10px 10px 10px;
 }
 
+.content img.file-icon { 
+	margin: 0;
+}
+
 .front .content img { 
 	margin: 0;
 }
@@ -276,8 +280,7 @@ body {
 }
 
 .front h2#page-title,
-#hp_right h2, 
-#left_col #block-views-news-block h2 {
+#hp_right h2 {
 	padding: 2px 0;
 	border-bottom: 1px solid #560251;
 	text-transform: uppercase;
@@ -684,7 +687,10 @@ tr, td {
 }
 
 
-
+ul.calendar-links {
+	display: none;
+	visibility: hidden;
+}
 
 
 
