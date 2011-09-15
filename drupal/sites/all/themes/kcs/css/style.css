@@ -481,7 +481,19 @@ body {
 	margin: 0;
 }
 
+#left_col .block h2.twitter-bird, 
+#right_col .block h2.twitter-bird {
+	height: 36px;
+	line-height: 36px;
+	background: url(../images/twitter.png) no-repeat left center;
+	padding-left: 54px;
+}
+
 /*...OTHER BLOCKS...*/
+#hp_right .block {
+	clear: both;
+}
+
 #left_col .block h2, 
 #right_col .block h2 {
 	font-size: 1.2em;
@@ -561,7 +573,8 @@ body {
 .view-resources .views-row,
 .consultant-news .views-row, 
 .members-page .views-row,
-.view-events .views-row {
+.view-events .views-row, 
+.members-list .views-row {
 	margin-bottom: 15px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #560251;
@@ -588,7 +601,8 @@ h2.field-content {
 	color: #939393;
 }
 
-.member-news-block .views-row {
+.member-news-block .views-row, 
+#views-exposed-form-resources-page {
 	background-color: #F6F1F6;
     margin-bottom: 10px;
 	padding: 5px;
@@ -597,6 +611,10 @@ h2.field-content {
 /*...EVENTS PAGE...*/
 .node-event .field {
 	margin-bottom: 10px;
+}
+
+#main .node-event ul.links {
+	margin-left: 0;
 }
 
 /*...BLOG MENU...*/
