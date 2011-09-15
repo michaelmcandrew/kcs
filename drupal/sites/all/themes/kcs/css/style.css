@@ -578,6 +578,7 @@ body {
 	margin-bottom: 15px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #560251;
+	overflow: hidden;
 }
 
 h2#page-title, h2.title, 
@@ -589,8 +590,15 @@ h2.field-content {
 .news-page .views-field-title h2, 
 .view-members-area h2.title, 
 .news-archive .views-field-title h2, 
-.member-news-block h2 {
+.view-resources .views-field-title h2,
+.member-news-block h2, 
+.view-events h2.title {
 	font-size: 1.2em;
+}
+
+.news-page .views-field-field-media {
+	float: right;
+	padding: 0 0 10px 10px;
 }
 
 .post-date, 
