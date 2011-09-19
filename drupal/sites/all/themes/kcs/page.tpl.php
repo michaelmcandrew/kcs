@@ -124,11 +124,10 @@
 			Email: <a href="mailto:info@kcs-coalition.com">info@kcs-coalition.com</a><br />
 			Registered charity number - 1142328		
 		</div>
-		<!-- <ul id="footer_list">
-				</ul> -->
+	
 		<div id="credits">
 			All content &copy; Keeping Children Safe<br />
-			Website by <a href="http://www.thirdsectordesign.org" target="_blank">Third Sector Design</a>
+			<a href="http://www.thirdsectordesign.org" target="_blank">Developed by Third Sector Design</a>
 		</div>		
 	</div>
 	<div class="clear"></div>
