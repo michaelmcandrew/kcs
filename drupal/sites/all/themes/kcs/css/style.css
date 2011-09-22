@@ -90,13 +90,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #main ul { 
-	list-style: disc inside none;
-	margin-left: 10px;
+	list-style: disc outside none;
+	padding-left: 30px;
 }
 
 #main ol {
-	list-style: decimal inside none;
-	margin-left: 10px;
+	list-style: decimal outside none;
+	padding-left: 36px;
 }
 
 ul li.leaf, ul li.expanded, ul li.collapsed,
@@ -493,6 +493,17 @@ body {
 }
 
 /*...OTHER BLOCKS...*/
+.region-sidebar-first .block,
+.region-sidebar-second .block { 	
+	margin-bottom: 10px;
+	border-bottom: 1px solid #560251;
+	overflow: hidden;
+}
+
+.region-sidebar-second .block {
+	padding: 15px 5px 22px;
+}
+
 #hp_right .block {
 	clear: both;
 }
@@ -502,12 +513,6 @@ body {
 	font-size: 1.2em;
 	line-height: 1.2em;
 	margin-bottom: 10px;
-}
-
-.region-sidebar-second .block {
-	padding: 15px 5px 22px;
-	border-bottom: 1px solid #560251;
-	overflow: hidden;
 }
 
 .quote-block .views-field-field-testimonial {
@@ -681,11 +686,22 @@ h2.field-content {
 
 
 /*...TABLES...*/
-tr, td {
-	border: 1px solid #560251;
-	padding: 5px;
+td {
+	padding: 5px 10px;
 }
 
+th { 
+	padding: 0 10px;
+}
+
+td { 
+	background-color: #F6F1F6;
+}
+
+th { 
+	background-color: #302F30;
+	color: #fff;
+} 
 
 ul.calendar-links {
 	display: none;
