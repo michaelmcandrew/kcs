@@ -495,7 +495,8 @@ body {
 /*...OTHER BLOCKS...*/
 .region-sidebar-first .block,
 .region-sidebar-second .block { 	
-	margin-bottom: 10px;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
 	border-bottom: 1px solid #560251;
 	overflow: hidden;
 }
@@ -581,7 +582,7 @@ body {
 .view-resources .views-row,
 .consultant-news .views-row, 
 .members-page .views-row,
-.view-events .views-row, 
+.events-page .views-row, 
 .members-list .views-row {
 	margin-bottom: 15px;
 	padding-bottom: 10px;
@@ -612,7 +613,8 @@ h2.field-content {
 .post-date, 
 .views-field-created, 
 .submitted, 
-.view-twitter-block .views-field-timestamp { 
+.view-twitter-block .views-field-timestamp, 
+.events-block .views-field-field-date { 
 	font-size: 0.9em;
 	color: #939393;
 }
