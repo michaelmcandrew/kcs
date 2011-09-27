@@ -212,6 +212,7 @@ body {
 }
 
 #main_menu {
+	height: 33px;
 	padding-left: 10px;
 }
 
@@ -276,6 +277,7 @@ body {
 }
 
 #header h2 {
+	font-size: 1.5em;
 	font-style: italic;
 }
 
@@ -447,12 +449,19 @@ body {
 
 /*...SEARCH BLOCK...*/
 #block-search-form {
+	width: 173px;
+	height: 23px;
 	float: right;
 }
 
 #block-search-form .form-item {
 	margin: 0;
 	float: left;
+}
+
+#block-search-form #edit-actions {
+	height: 23px;
+	float: right;
 }
 
 #block-search-form input#edit-search-block-form--2 {
@@ -462,7 +471,6 @@ body {
 
 #block-search-form input#edit-submit {
 	padding: 5px 6px;
-	float: right;
 }
 
 /*...TWITTER BLOCK...*/
@@ -580,7 +588,6 @@ body {
 .view-members-area .views-row, 
 .news-archive .views-row, 
 .view-resources .views-row,
-.consultant-news .views-row, 
 .members-page .views-row,
 .events-page .views-row, 
 .members-list .views-row {
