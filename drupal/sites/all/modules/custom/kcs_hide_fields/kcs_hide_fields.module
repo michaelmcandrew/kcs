@@ -1,0 +1,43 @@
+<?php
+/**
+ * Implements hook_node_load().
+ *
+ * Prevents the following fields from being rendered to anonymous users:
+ *
+ * - field_file
+ * - field_video
+ * - field_link
+ *
+ * Sets a message that is shown to the user if a field has been hidden.
+ */
+function kcs_hide_fields_node_load($nodes, $types) {
+  global $user;
+  $hidden = FALSE;
+  // user is anonymous
+  if ($user->uid == 0) {
+    // apply to single node view only
+    // remove this condition to apply to views with mutliple resources
+    if (count($nodes) == 1) {
+      foreach ($nodes as $node) {
+        if ($node->type == 'resource') {
+          if (count($node->field_file)) {
+            unset($node->field_file);
+            $hidden = TRUE;
+          }
+          if (count($node->field_video)) {
+            unset($node->field_video);
+            $hidden = TRUE;
+          }
+          if (count($node->field_link)) {
+            unset($node->field_link);
+            $hidden = TRUE;
+          }
+        }
+      }
+    }
+  }        
+  if ($hidden) {
+    $link = l('members','membership');
+    drupal_set_message("This resource contains some content available only to $link.");
+  }
+}

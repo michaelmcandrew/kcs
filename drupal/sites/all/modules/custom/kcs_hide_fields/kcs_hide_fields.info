@@ -1,0 +1,4 @@
+name = kcs hide fields
+description = Hide some fields to anonymous.
+package = kcs
+core = 7.x
