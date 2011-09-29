@@ -1,0 +1,11 @@
+#header { 
+	background: url(../images/world.png) no-repeat 480px 0;
+}
+
+.quote-block .views-field-field-testimonial {
+	background: url(../images/quotes-left.gif) no-repeat 0 0;
+}
+
+.quote-block .views-field-field-testimonial .field-content {
+	background: url(../images/quotes-right.gif) no-repeat right bottom;	
+}
