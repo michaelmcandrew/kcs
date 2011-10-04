@@ -739,7 +739,11 @@ ul.calendar-links {
 	padding-left: 0;
 }
 
-
+.members-list .views-field-field-logo {
+	width: 240px;
+	margin-left: 15px;
+	float: right;
+}
 
 
 
