@@ -745,6 +745,11 @@ ul.calendar-links {
 	float: right;
 }
 
+#block-views-members-block-4 h2,
+#block-views-members-block-5 h2 {
+	font-size: 1.1em;
+	margin-bottom: 1em;
+}
 
 
 
