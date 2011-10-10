@@ -740,5 +740,17 @@ ul.calendar-links {
 	margin-bottom: 1em;
 }
 
-
-
+/*
+ * Required by kcs_highlight_tabs module.
+ *
+ * Suppress second display of page title.
+ *
+ * Note: .node must be a direct descendant of .content so that in a view, the
+ * h2.title still displays.
+ *
+ * In a view, e.g. /events, .node is a descendant of .view-content > views-row
+ */
+.region #block-system-main .content > .node h2.title {
+  display: none;
+  visibility: hidden;
+}

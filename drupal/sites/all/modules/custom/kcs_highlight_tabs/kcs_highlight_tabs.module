@@ -3,6 +3,11 @@
  * Implements hook_node_view().
  *
  * Highlights the menu tab at the top of the page, depending on the node type.
+ *
+ * This code has the side-effect that the page title is displayed twice on 
+ * screen, css is used to suppress this.
+ *
+ * See themes/kcs/css/style.css, search for kcs_highlight_tabs.
  */
 function kcs_highlight_tabs_node_view($node, $view_mode, $langcode) {
   switch ($node->type) {
