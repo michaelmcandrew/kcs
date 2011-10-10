@@ -1,0 +1,4 @@
+name = kcs highlight tabs
+description = Highlight menu tabs according to node type.
+package = kcs
+core = 7.x

@@ -1,0 +1,22 @@
+<?php
+/**
+ * Implements hook_node_view().
+ *
+ * Highlights the menu tab at the top of the page, depending on the node type.
+ */
+function kcs_highlight_tabs_node_view($node, $view_mode, $langcode) {
+  switch ($node->type) {
+    case 'news':
+      $path = drupal_get_normal_path('news');
+      break;
+    case 'event':
+      $path = drupal_get_normal_path('events');
+      break;
+    case 'resource':
+      $path = drupal_get_normal_path('resources');
+      break;
+  }
+  if($path && $menu_item = menu_get_item($path)) {
+    menu_set_item(NULL, $menu_item);
+  }
+}
