@@ -9,6 +9,13 @@
  * - field_link
  *
  * Sets a message that is shown to the user if a field has been hidden.
+ *
+ * Field templates are responsible for displaying html to the anonymous user.
+ *
+ * See: themes/kcs
+ *  - field--field_file.tpl.php
+ *  - field--field_video.tpl.php
+ *  - field--field_link.tpl.php
  */
 function kcs_hide_fields_node_load($nodes, $types) {
   global $user;
@@ -21,15 +28,15 @@ function kcs_hide_fields_node_load($nodes, $types) {
       foreach ($nodes as $node) {
         if ($node->type == 'resource') {
           if (count($node->field_file)) {
-            unset($node->field_file);
+            //unset($node->field_file);
             $hidden = TRUE;
           }
           if (count($node->field_video)) {
-            unset($node->field_video);
+            //unset($node->field_video);
             $hidden = TRUE;
           }
           if (count($node->field_link)) {
-            unset($node->field_link);
+            //unset($node->field_link);
             $hidden = TRUE;
           }
         }
