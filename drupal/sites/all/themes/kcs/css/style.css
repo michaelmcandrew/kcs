@@ -750,7 +750,18 @@ ul.calendar-links {
  *
  * In a view, e.g. /events, .node is a descendant of .view-content > views-row
  */
+/* commented out 2011-10-17
+ * Instead of solving the problem in css, it's better done
+ * in node.tpl.php
+ *
+ * In s/a/m/themes/kcs/node.tpl.php
+ *
+ * If you replace line 84 <php if (!$page): ?> with <php if ($teaser): ?> 
+ * then the problem goes away and you don't need the css fix.
+ *
+ * Essentially we only want the h2 link to show on a teaser.
 .region #block-system-main .content > .node h2.title {
   display: none;
   visibility: hidden;
 }
+  */

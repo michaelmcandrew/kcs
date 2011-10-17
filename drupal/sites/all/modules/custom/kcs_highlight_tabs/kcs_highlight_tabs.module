@@ -5,23 +5,29 @@
  * Highlights the menu tab at the top of the page, depending on the node type.
  *
  * This code has the side-effect that the page title is displayed twice on 
- * screen, css is used to suppress this.
- *
- * See themes/kcs/css/style.css, search for kcs_highlight_tabs.
+ * screen. This is fixed in themes/kcs/node.tpl.php, search for
+ * kcs_highlight_tabs.
  */
 function kcs_highlight_tabs_node_view($node, $view_mode, $langcode) {
-  switch ($node->type) {
-    case 'news':
-      $path = drupal_get_normal_path('news');
-      break;
-    case 'event':
-      $path = drupal_get_normal_path('events');
-      break;
-    case 'resource':
-      $path = drupal_get_normal_path('resources');
-      break;
-  }
-  if($path && $menu_item = menu_get_item($path)) {
-    menu_set_item(NULL, $menu_item);
+  // Do this for anonymous user only.
+  // Why? Well, this code disrupts the path in edit link for an editor.
+  // For example, when trying to edit a resource, we got sent to edit the 
+  // resources page (the one linked to the highlighted tab) instead.
+  global $user;
+  if ($user->uid == 0) {
+    switch ($node->type) {
+      case 'news':
+        $path = drupal_get_normal_path('news');
+        break;
+      case 'event':
+        $path = drupal_get_normal_path('events');
+        break;
+      case 'resource':
+        $path = drupal_get_normal_path('resources');
+        break;
+    }
+    if($path && $menu_item = menu_get_item($path)) {
+      menu_set_item(NULL, $menu_item);
+    }
   }
 }
