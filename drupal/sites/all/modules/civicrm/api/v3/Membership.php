@@ -56,8 +56,6 @@ require_once 'CRM/Utils/Array.php';
  */
 function civicrm_api3_membership_delete($params)
 {
-    _civicrm_api3_initialize(true);
-      try{ 
    
     civicrm_api3_verify_one_mandatory($params,null,array('id','membership_id'));
     $membershipID = empty($params['id']) ?$params['membership_id'] :$params['id'];
@@ -75,11 +73,7 @@ function civicrm_api3_membership_delete($params)
     $result = $membership->deleteMembership($membershipID);
 
     return $result ? civicrm_api3_create_success( ) : civicrm_api3_create_error('Error while deleting Membership');
-  } catch (PEAR_Exception $e) {
-    return civicrm_api3_create_error( $e->getMessage() );
-  } catch (Exception $e) {
-    return civicrm_api3_create_error( $e->getMessage() );
-  }
+
 }
 
 
@@ -97,8 +91,7 @@ function civicrm_api3_membership_delete($params)
  */
 function civicrm_api3_membership_create($params)
 {
-  _civicrm_api3_initialize(true);
-  try{
+
 
 
     $error = _civicrm_api3_membership_check_params( $params );
@@ -112,7 +105,7 @@ function civicrm_api3_membership_create($params)
       return $error;
     }
 
-    $params = array_merge($values,$params);
+    $params = array_merge( $params, $values );
 
     require_once 'CRM/Core/Action.php';
     $action = CRM_Core_Action::ADD;
@@ -131,7 +124,7 @@ function civicrm_api3_membership_create($params)
 
     require_once 'CRM/Member/BAO/Membership.php';
     $membershipBAO = CRM_Member_BAO_Membership::create($params, $ids, true);
-
+    
     if ( array_key_exists( 'is_error', $membershipBAO ) ) {
       // In case of no valid status for given dates, $membershipBAO
       // is going to contain 'is_error' => "Error Message"
@@ -139,17 +132,10 @@ function civicrm_api3_membership_create($params)
     }
 
     $membership = array();
-    _civicrm_api3_object_to_array($membershipBAO, $membership);
-    $values = array( );
-    $values['id'] = $membership['id'];
-    $values['is_error']   = 0;
+    _civicrm_api3_object_to_array($membershipBAO, $membership[$membershipBAO->id]);
 
-    return $values;
-  } catch (PEAR_Exception $e) {
-    return civicrm_api3_create_error( $e->getMessage() );
-  } catch (Exception $e) {
-    return civicrm_api3_create_error( $e->getMessage() );
-  }
+    return civicrm_api3_create_success($membership , $params,'membership','create', $membershipBAO);
+
 }
 
 /**
@@ -168,13 +154,17 @@ function civicrm_api3_membership_create($params)
  */
 function civicrm_api3_membership_get($params)
 {
-  try{
+
     civicrm_api3_verify_mandatory($params);
 
     $contactID = $activeOnly = $membershipTypeId = $membershipType = null;
    
       $contactID        = CRM_Utils_Array::value( 'contact_id', $params );
-      $activeOnly       = CRM_Utils_Array::value( 'active_only', $params, false );
+      if(!empty($params['filters']) && is_array($params['filters'])){
+        $activeOnly       = CRM_Utils_Array::value( 'is_current', $params['filters'], false );
+      }
+      $activeOnly       = CRM_Utils_Array::value( 'active_only', $params, $activeOnly );
+
       $membershipTypeId = CRM_Utils_Array::value( 'membership_type_id', $params );
       if ( !$membershipTypeId ) {
         $membershipType = CRM_Utils_Array::value( 'membership_type', $params );
@@ -226,7 +216,7 @@ function civicrm_api3_membership_get($params)
         $membershipValues[$membershipId]['relationship_name'] = $relationshipType->name_a_b;
       }
       
-      _civicrm_apiv3_custom_data_get($membershipValues[$membershipId],'Membership',$membershipId,null,$values['membership_type_id']);
+      _civicrm_api3_custom_data_get($membershipValues[$membershipId],'Membership',$membershipId,null,$values['membership_type_id']);
 
     }
 
@@ -253,12 +243,8 @@ function civicrm_api3_membership_get($params)
       }
     }
     
-    return civicrm_api3_create_success($members,$params);
-    } catch (PEAR_Exception $e) {
-    return civicrm_api3_create_error( $e->getMessage() );
-  } catch (Exception $e) {
-    return civicrm_api3_create_error( $e->getMessage() );
-  }
+    return civicrm_api3_create_success($members,$params, 'membership','get');
+
 }
 
 
@@ -304,13 +290,7 @@ function _civicrm_api3_membership_format_params( $params, &$values, $create=fals
         $values['contact_id'] = $values['membership_contact_id'];
         unset($values['membership_contact_id']);
         break;
-      case 'join_date':
-      case 'membership_start_date':
-      case 'membership_end_date':
-        if (!CRM_Utils_Rule::date($value)) {
-          return civicrm_api3_create_error("$key not a valid date: $value");
-        }
-        break;
+
       case 'membership_type_id':
         if ( !CRM_Utils_Array::value( $value, CRM_Member_PseudoConstant::membershipType( ) ) ) {
           return civicrm_api3_create_error( 'Invalid Membership Type Id' );
@@ -375,29 +355,25 @@ function _civicrm_api3_membership_format_params( $params, &$values, $create=fals
  * @return bool|CRM_Utils_Error
  * @access private
  */
-function _civicrm_api3_membership_check_params( $params ) {
+function _civicrm_api3_membership_check_params( &$params ) {
 
-  civicrm_api3_verify_mandatory($params,null,array('contact_id'));
+  civicrm_api3_verify_mandatory($params,null,array('contact_id',array('membership_type_id','membership_type')));
 
   $valid = true;
   $error = '';
 
   // check params for membership id during update
   if ( CRM_Utils_Array::value( 'id', $params ) ) {
+    //don't calculate dates on exisiting membership - expect API use to pass them in
+    // or leave unchanged
+    $params['skipStatusCal'] = 1;
     require_once 'CRM/Member/BAO/Membership.php';
     $membership     = new CRM_Member_BAO_Membership();
     $membership->id = $params['id'];
     if ( !$membership->find( true ) ) {
       return civicrm_api3_create_error( ts( 'Membership id is not valid' ));
     }
-  } else {
-    // membership type id Or membership type is required during add
-    if ( !CRM_Utils_Array::value( 'membership_type_id', $params ) &&
-    !CRM_Utils_Array::value( 'membership_type', $params )) {
-      $valid  = false;
-      $error .= ' membership_type_id Or membership_type';
-    }
-  }
+  } 
 
   // also check for status id if override is set (during add/update)
   if ( isset( $params['is_override'] ) &&

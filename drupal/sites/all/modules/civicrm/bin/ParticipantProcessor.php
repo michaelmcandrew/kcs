@@ -47,10 +47,6 @@ class CRM_ParticipantProcessor
 
         //log the execution time of script
         CRM_Core_Error::debug_log_message( 'ParticipantProcessor.php' );
-        
-        //load bootstrap to call hooks
-        require_once 'CRM/Utils/System.php';
-        CRM_Utils_System::loadBootStrap(  );
    }
     
     public function updateParticipantStatus( )
@@ -83,6 +79,8 @@ class CRM_ParticipantProcessor
      FROM  civicrm_participant participant
 LEFT JOIN  civicrm_event event ON ( event.id = participant.event_id )
     WHERE  participant.status_id IN {$statusIds}
+     AND   (event.end_date > now() OR event.end_date IS NULL)
+     AND   event.is_active = 1 
  ORDER BY  participant.register_date, participant.id 
 ";
         $dao =& CRM_Core_DAO::executeQuery( $query );

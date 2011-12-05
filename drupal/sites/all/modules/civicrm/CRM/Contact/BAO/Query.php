@@ -59,9 +59,10 @@ class CRM_Contact_BAO_Query
         MODE_PLEDGEBANK =  256,
         MODE_PLEDGE     =  512,
         MODE_CASE       = 2048,
-        MODE_ALL        = 1023,
+        MODE_ALL        = 17407,
         MODE_ACTIVITY   = 4096,
-        MODE_CAMPAIGN   = 8192;
+        MODE_CAMPAIGN   = 8192,
+        MODE_MAILING	= 16384;
     
     /**
      * the default set of return properties
@@ -1066,25 +1067,20 @@ class CRM_Contact_BAO_Query
             if ( isset( $this->_distinctComponentClause ) ) {
                 $select = "SELECT count( {$this->_distinctComponentClause} )";
             } else {
-                $select = ( $this->_useDistinct ) ?	
-                    'SELECT count(DISTINCT contact_a.id)' :
-                    'SELECT count(*)';
+                $select = 'SELECT count(*)';
             }
             $from = $this->_simpleFromClause;
+            if ( $this->_useDistinct ) {
+                $this->_useGroupBy = true;
+            }
         } else if ( $sortByChar ) {  
             $select = 'SELECT DISTINCT UPPER(LEFT(contact_a.sort_name, 1)) as sort_name';
             $from = $this->_simpleFromClause;
         } else if ( $groupContacts ) { 
-            // CRM-5954 - changing SELECT DISTINCT( contact_a.id ) -> SELECT ... GROUP BY contact_a.id
-            // but need to measure performance
-            $select = ( $this->_useDistinct ) ?
-                'SELECT DISTINCT(contact_a.id) as id' :
-                'SELECT contact_a.id as id'; 
-            // $select = 'SELECT contact_a.id as id';
-            // if ( $this->_useDistinct ) {
-            //     $this->_useGroupBy = true;
-            // }
-
+            $select = 'SELECT contact_a.id as id'; 
+            if ( $this->_useDistinct ) {
+                $this->_useGroupBy = true;
+            }
             $from = $this->_simpleFromClause;
         } else {
             if ( CRM_Utils_Array::value( 'group', $this->_paramLookup ) ) {
@@ -1116,8 +1112,7 @@ class CRM_Contact_BAO_Query
                 if ( !( $this->_mode & CRM_Contact_BAO_Query::MODE_ACTIVITY ) ) {
                     // CRM-5954
                     $this->_select['contact_id'] = 'DISTINCT(contact_a.id) as contact_id';
-                    // $this->_useGroupBy = true;
-                    // $this->_select['contact_id'] ='contact_a.id as contact_id';
+                    $this->_useGroupBy = true;
                 }
             } 
 
@@ -1374,6 +1369,8 @@ class CRM_Contact_BAO_Query
         case 'activity_contact_name':
         case 'activity_campaign_id':
         case 'activity_engagement_level':
+        case 'activity_id':    
+            require_once 'CRM/Activity/BAO/Query.php';
             CRM_Activity_BAO_Query::whereClauseSingle( $values, $this );
             return;
 
@@ -2905,8 +2902,12 @@ WHERE  id IN ( $groupIDs )
         }
 
         if ( $fromStateProvince ) {
-            return array( $countryClause,
-                          " ...AND... " . $countryQill );
+            if ( ! empty( $countryClause ) ) {
+                return array( $countryClause,
+                              " ...AND... " . $countryQill );
+            } else {
+                return array( null, null );
+            }
         }
     }
 
@@ -2925,28 +2926,49 @@ WHERE  id IN ( $groupIDs )
             $value = array( $value );
         }
 
-        $stateClause = 
-            'civicrm_state_province.id IN (' . 
-            implode( ',', $value ) .
-            ')';
+        // check if the values are ids OR names of the states
+        $inputFormat = 'id';
+        foreach ( $value as $v ) {
+            if ( ! is_numeric( $v ) ) {
+                $inputFormat = 'name';
+                break;
+            }
+        }
+        
+        $names = array( );
+        if ( $inputFormat == 'id' ) {
+            $stateClause = 
+                'civicrm_state_province.id IN (' . 
+                implode( ',', $value ) .
+                ')';
+
+            $stateProvince = CRM_Core_PseudoConstant::stateProvince();
+            foreach ( $value as $id ) {
+                $names[] = $stateProvince[$id];
+            }
+        } else {
+            $inputClause = array( );
+            foreach ( $value as $name ) {
+                $name = trim($name);
+                $inputClause[] = "'$name'";
+            }
+            $stateClause = 
+                'civicrm_state_province.name IN (' . 
+                implode( ',', $inputClause ) .
+                ')';
+            $names = $value;
+        }
 
         $this->_tables['civicrm_state_province'] = 1;
         $this->_whereTables['civicrm_state_province'] = 1;
-            
-        $stateProvince =& CRM_Core_PseudoConstant::stateProvince();
-        $names = array( );
-        foreach ( $value as $id ) {
-            $names[] = $stateProvince[$id];
-        }
-            
 
         $countryValues = $this->getWhereValues( 'country', $grouping );
         list( $countryClause, $countryQill ) = $this->country( $countryValues, true );
 
         if ( $countryClause ) {
-            $clause = $stateClause;
+            $clause = "( $stateClause AND $countryClause )";
         } else {
-            $clause = ( $stateClause AND $countryClause );
+            $clause = $stateClause;
         }
 
         $this->_where[$grouping][] = $clause;
@@ -3155,7 +3177,6 @@ WHERE  id IN ( $groupIDs )
             $params = array( 'id' => $rel[0] );
             $rTypeValues = array( );
 
-            require_once "CRM/Contact/BAO/RelationshipType.php";
             $rType =& CRM_Contact_BAO_RelationshipType::retrieve( $params, $rTypeValues );
             if ( ! $rType ) {
                 return;
@@ -3585,6 +3606,7 @@ WHERE  id IN ( $groupIDs )
         $query = "$select $from $where $having $groupBy $order $limit";
         // CRM_Core_Error::debug('query', $query);
         // CRM_Core_Error::debug('query', $where);
+        // CRM_Core_Error::debug('this', $this );
 
         if ( $returnQuery ) {
             return $query;
@@ -4004,6 +4026,7 @@ SELECT COUNT( civicrm_contribution.total_amount ) as cancel_count,
                 // supporting multiple values in IN clause
                 $val = array();
                 foreach ( $values as $v ) {
+                    $v = trim( $v );
                     $val[] = "'" . CRM_Utils_Type::escape( $v, $dataType ) . "'";
                 }
                 $value = "(" . implode( $val, "," ) . ")";
@@ -4028,17 +4051,18 @@ SELECT COUNT( civicrm_contribution.total_amount ) as cancel_count,
         }
         
         // pane name to table mapper
-        $panesMapper = array( 'Contributions'   => 'civicrm_contribution',
-                              'Memberships'     => 'civicrm_membership',
-                              'Events'          => 'civicrm_participant',
-                              'Relationships'   => 'civicrm_relationship',
-                              'Activities'      => 'civicrm_activity',
-                              'Pledges'         => 'civicrm_pledge',
-                              'Cases'           => 'civicrm_case',
-                              'Grants'          => 'civicrm_grant',
-                              'Address Fields'  => 'civicrm_address',
-                              'Notes'           => 'civicrm_note',
-                              'Change Log'      => 'civicrm_log',
+        $panesMapper = array( ts('Contributions')   => 'civicrm_contribution',
+                              ts('Memberships')     => 'civicrm_membership',
+                              ts('Events')          => 'civicrm_participant',
+                              ts('Relationships')   => 'civicrm_relationship',
+                              ts('Activities')      => 'civicrm_activity',
+                              ts('Pledges')         => 'civicrm_pledge',
+                              ts('Cases')           => 'civicrm_case',
+                              ts('Grants')          => 'civicrm_grant',
+                              ts('Address Fields')  => 'civicrm_address',
+                              ts('Notes')           => 'civicrm_note',
+                              ts('Change Log')      => 'civicrm_log',
+                              ts('Mailings')        => 'civicrm_mailing_event_queue'
                               );
         
         foreach( array_keys($this->_whereTables) as $table ) {
@@ -4046,7 +4070,7 @@ SELECT COUNT( civicrm_contribution.total_amount ) as cancel_count,
                 self::$_openedPanes[$panName] = true;
             }
         }
-
+        
         return self::$_openedPanes;
     }
 

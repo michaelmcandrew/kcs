@@ -49,7 +49,7 @@ function uf_group_get_expectedresult(){
   'values' => array( 
       '12' => array( 
           'id' => '12',
-          'is_active' => '',
+          'is_active' => 0,
           'group_type' => 'Individual,Contact',
           'title' => 'Test Group',
           'help_pre' => 'help pre',
@@ -69,7 +69,7 @@ function uf_group_get_expectedresult(){
           'name' => 'Test_Group',
           'created_id' => '69',
           'created_date' => '0000-00-00 00:00:00',
-          'is_proximity_search' => '',
+          'is_proximity_search' => 0,
         ),
     ),
 );

@@ -143,7 +143,7 @@ class CRM_Contact_Page_AJAX
         } else {
            $strSearch = "$name%";
         }
-        $includeEmailFrom = $includeNickName = '';
+        $includeEmailFrom = $includeNickName = $exactIncludeNickName = '';
         if ( $config->includeNickNameInName ) {
             $includeNickName = " OR nick_name LIKE '$strSearch'";
             $exactIncludeNickName = " OR nick_name LIKE '$name'";
@@ -375,7 +375,7 @@ LIMIT    0, {$limit}
     static function getPermissionedEmployer( ) 
     {
         $cid       = CRM_Utils_Type::escape( $_GET['cid'], 'Integer' );
-        $name      = trim(CRM_Utils_Type::escape( $_GET['name'], 'String')); 
+        $name      = trim(CRM_Utils_Type::escape( $_GET['s'], 'String')); 
         $name      = str_replace( '*', '%', $name );
 
         require_once 'CRM/Contact/BAO/Relationship.php';
@@ -608,6 +608,7 @@ WHERE sort_name LIKE '%$name%'";
         // reset the group contact cache for this group
         require_once 'CRM/Contact/BAO/GroupContactCache.php';
         CRM_Contact_BAO_GroupContactCache::remove( );
+        CRM_Utils_System::civiExit( );
     }
 
     /**
@@ -706,8 +707,12 @@ WHERE sort_name LIKE '%$name%'";
                     $queryString = " ( cc.sort_name LIKE '%$name%' OR ce.email LIKE '%$name%' ) ";
                 }
             } elseif ( $cid = CRM_Utils_Array::value( 'cid', $_GET ) ) {
-                $cid = CRM_Utils_Type::escape( $cid, 'Integer' );
-				$queryString = " cc.id IN ( $cid )";
+                //check cid for interger
+                $contIDS = explode( ',', $cid );
+                foreach ( $contIDS as $contID ) {
+                    CRM_Utils_Type::escape( $contID, 'Integer' );
+                }
+                $queryString = " cc.id IN ( $cid )";
 			}
 
             if ( $queryString ) {
@@ -782,6 +787,29 @@ LIMIT {$offset}, {$rowCount}
        $subTypes = CRM_Contact_BAO_ContactType::subTypePairs( $contactType, false, null );
        asort($subTypes);
        echo json_encode( $subTypes );
+       CRM_Utils_System::civiExit( );
+    }
+    
+    static function buildDedupeRules( ) 
+    {
+       $parent = CRM_Utils_Array::value( 'parentId', $_POST );
+
+       switch ( $parent ) {
+            case 1:
+                $contactType = 'Individual';
+                break;
+            case 2:
+                $contactType = 'Household';
+                break;
+            case 4:
+                $contactType = 'Organization';
+                break;
+       }
+ 
+       require_once 'CRM/Dedupe/BAO/RuleGroup.php';
+       $dedupeRules = CRM_Dedupe_BAO_RuleGroup::getByType( $contactType );
+
+       echo json_encode( $dedupeRules );
        CRM_Utils_System::civiExit( );
     }
     

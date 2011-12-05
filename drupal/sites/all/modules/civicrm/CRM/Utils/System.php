@@ -148,6 +148,8 @@ class CRM_Utils_System {
             if ( $maintenance ) {
                 drupal_set_breadcrumb( '' );
                 drupal_maintenance_theme();
+                print theme('maintenance_page', array('content' => $content));
+                exit( );
             }
             $out = $content;
             $ret = true;
@@ -1312,7 +1314,7 @@ class CRM_Utils_System {
     }
 
     /**
-     * Append the contents of a javascript file if it is present in
+     * Append the contents of an 'extra' smarty template file if it is present in
      * the custom template directory. This does not work if there are
      * multiple custom template directories
      *
@@ -1322,17 +1324,11 @@ class CRM_Utils_System {
      * @return void - the content string is modified if needed
      * @static
      */
-    static function appendJSFile( $fileName, &$content ) {
-        $config =& CRM_Core_Config::singleton( );
-        if ( isset( $config->customTemplateDir ) &&
-             $config->customTemplateDir ) {
-            $additionalJSFile = str_replace( '.tpl', '.extra.js', $fileName );
-            // check if the file exists in the custom templates directory
-            $fileName = $config->customTemplateDir . DIRECTORY_SEPARATOR . $additionalJSFile;
-            if ( file_exists( $fileName ) ) {
-                $content .= "<script>\n" . file_get_contents( $fileName ) . "</script>";
-            }
+    static function appendTPLFile( $fileName, &$content ) {
+        $template = CRM_Core_Smarty::singleton( );
+        $additionalTPLFile = str_replace( '.tpl', '.extra.tpl', $fileName );
+        if ( $template->template_exists( $additionalTPLFile ) ) {
+            $content .= $template->fetch( $additionalTPLFile );
         }
     }
-    
 }

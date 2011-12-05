@@ -252,7 +252,7 @@ class CRM_Core_PseudoConstant
     private static $honorType;
 
     /**
-     * activity type
+     * activity status
      * @var array
      * @static
      */
@@ -313,6 +313,20 @@ class CRM_Core_PseudoConstant
      * @static
      */
     private static $extensions = array( );
+    
+    /**
+     * activity contacts
+     * @var array
+     * @static
+     */
+    private static $activityContacts;
+
+    /**
+     * auto renew options
+     * @var array
+     * @static
+     */
+    private static $autoRenew;
     
     /**
      * populate the object from the database. generic populate
@@ -1028,20 +1042,27 @@ WHERE  id = %1";
      *
      */
     public static function &staticGroup( $onlyPublic = false,
-                                         $groupType  = null )
+                                         $groupType  = null,
+                                         $excludeHidden = true )
     {
         if ( ! self::$staticGroup ) {
             $condition = 'saved_search_id = 0 OR saved_search_id IS NULL';
             if ( $onlyPublic ) {
                 $condition .= " AND visibility != 'User and User Admin Only'";
             }
+
             if ( $groupType ) {
                 require_once 'CRM/Contact/BAO/Group.php';
                 $condition .= ' AND ' . CRM_Contact_BAO_Group::groupTypeCondition( $groupType );
             }
+
+            if ( $excludeHidden ) {
+                $condition .= ' AND is_hidden != 1 ';
+            }
             
             self::populate( self::$staticGroup, 'CRM_Contact_DAO_Group', false, 'title', 'is_active', $condition, 'title' );
         }
+
         return self::$staticGroup;        
     }
 
@@ -1605,6 +1626,29 @@ ORDER BY name";
 
         return self::$extensions;
     }
+
+    /**
+     * Get all Activity Contacts
+     *
+     * The static array activityContacts is returned
+     *
+     * @access public
+     * @static
+     *
+     * @param boolean $all - get All activity Contacts - default is to get only active ones.
+     *
+     * @return array - array reference of all  activity Contacts
+     *
+     */
+    public static function &activityContacts( )
+    {
+        if ( ! self::$activityContacts ) {
+            require_once 'CRM/Core/OptionGroup.php';
+            self::$activityContacts = CRM_Core_OptionGroup::values('activity_contacts');
+        }
+        return self::$activityContacts;
+    }
+
 }
 
 

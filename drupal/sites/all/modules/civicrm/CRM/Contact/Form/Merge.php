@@ -252,14 +252,14 @@ class CRM_Contact_Form_Merge extends CRM_Core_Form
                 $contact =& $$moniker;
                 $value = CRM_Utils_Array::value( $field, $contact );
                 $label = isset( $specialValues[$moniker][$field] ) ? $specialValues[$moniker]["{$field}_display"] : $value;
-                if ( $fields[$field]['type'] == CRM_Utils_Type::T_DATE ) {
+                if ( CRM_Utils_Array::value( 'type', $fields[$field] ) && $fields[$field]['type'] == CRM_Utils_Type::T_DATE ) {
                     if ( $value ) {
                         $value = str_replace( '-', '', $value );
                         $label = CRM_Utils_Date::customFormat( $label );
                     } else {
                         $value = "null";
                     }
-                } elseif ( $fields[$field]['type'] == CRM_Utils_Type::T_BOOLEAN ) {
+                } elseif ( CRM_Utils_Array::value( 'type', $fields[$field] ) && $fields[$field]['type'] == CRM_Utils_Type::T_BOOLEAN ) {
                     if ( $label === '0' ) {
                         $label = ts('[ ]');
                     }
@@ -353,8 +353,8 @@ class CRM_Contact_Form_Merge extends CRM_Core_Form
         $this->assign( 'mainLocAddress', json_encode( $mainLocAddress ) );        
         
         // handle custom fields
-        $mainTree  =& CRM_Core_BAO_CustomGroup::getTree($this->_contactType, $this, $this->_cid, -1);
-        $otherTree =& CRM_Core_BAO_CustomGroup::getTree($this->_contactType, $this, $this->_oid, -1);
+        $mainTree  =& CRM_Core_BAO_CustomGroup::getTree($this->_contactType, $this, $this->_cid, -1,CRM_Utils_Array::value('contact_sub_type', $main));
+        $otherTree =& CRM_Core_BAO_CustomGroup::getTree($this->_contactType, $this, $this->_oid, -1,CRM_Utils_Array::value('contact_sub_type', $other));
         if (!isset($diffs['custom'])) $diffs['custom'] = array();
         foreach ($otherTree as $gid => $group) {
             $foundField = false;
