@@ -71,6 +71,10 @@ a.btn, .btn {
 	color: #fff;
 }
 
+.node-page a {
+	background-color: #ece7ec;
+}
+
 .btn,
 #block-user-login input#edit-submit {
 	padding: 6px 15px 9px;
