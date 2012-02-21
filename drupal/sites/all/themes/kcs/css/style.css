@@ -115,21 +115,26 @@ body {
 
 #wrapper { 
 	width: 960px;
-	margin: 10px auto 0;
+	margin: 0 auto;
 	font-family: helvetica, arial, sans-serif;
-	position: relative;
 }
 
 #header { 
-	height: 95px;
-	padding-top: 40px;
+	height: 135px;
 	margin-bottom: 20px;
 	background: url(../images/world.png) no-repeat 480px 0;
+	position: relative;
 }
 
 #header_left {
-	width: 600px;
+	width: 530px;
 	float: left;
+	padding-top: 40px;
+}
+
+.region-header {
+	width: 430px;
+	float: right;
 }
 
 #main {
@@ -173,35 +178,37 @@ body {
 }
 
 /*...HEADER...*/
+#block-menu-menu-multi-lingual {
+	float: right;
+	font-size: 1.2em;
+}
 #block-system-user-menu {
-	position: absolute;
-	top: -10px;
-	right: 0;
-	/*font-family: ff-tisa-web-pro, georgia, serif;*/
+	float: right;
 	font-size: 1.2em;
 }
 
-#block-system-user-menu .content ul, 
-#block-system-user-menu .content ul li {
+#block-menu-menu-multi-lingual .content li,
+#block-system-user-menu .content li {
 	list-style: none outside none;
 	padding: 0;
 	display: inline;
-	/*margin-left: 4px;*/
 }
-
-#block-system-user-menu .content ul li a {
+#block-menu-menu-multi-lingual .content li {
+	margin-right: 4px;
+}
+#block-menu-menu-multi-lingual .content li a {
+	display: inline-block;
+	padding: 3px 15px 3px;
+	color: #560251;
+	border: 1px solid #560251;
+	border-width: 0 1px 1px 1px;
+	background-color: #fff;
+}
+#block-system-user-menu .content li a {
 	display: inline-block;
 	padding: 3px 15px 4px;
 	color: #fff;
 	background-color: #560251;
-	/*-khtml-border-radius-bottomleft: 6px;
-  	-khtml-border-radius-bottomright: 6px;
-  	-moz-border-radius-bottomleft: 6px;
-  	-moz-border-radius-bottomright: 6px;
-  	-webkit-border-bottom-left-radius: 6px;
-  	-webkit-border-bottom-right-radius: 6px;
-  	border-bottom-left-radius: 6px;
-  	border-bottom-right-radius: 6px;*/
 }
 
 
@@ -453,6 +460,8 @@ body {
 	width: 173px;
 	height: 23px;
 	float: right;
+	clear: right;
+	padding-top: 30px;
 }
 
 #block-search-form .form-item {
@@ -700,22 +709,19 @@ h2.field-content {
 
 
 /*...TABLES...*/
+table {
+	width: 100% !important;
+}
 td {
 	padding: 5px 10px;
-}
-
-th { 
-	padding: 0 10px;
-}
-
-td { 
 	background-color: #F6F1F6;
 }
 
 th { 
+	padding: 0 10px;
 	background-color: #302F30;
 	color: #fff;
-} 
+}
 
 
 /*...MISC...*/

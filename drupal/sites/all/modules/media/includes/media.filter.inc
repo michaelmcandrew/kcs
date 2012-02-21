@@ -350,6 +350,18 @@ function media_format_form($form, $form_state, $file) {
     '#options' => $options,
     '#default_value' => $default_view_mode
   );
+  $form['options']['alt'] = array(
+	'#type' => 'textfield',
+    '#title' => t('Alternate text'),
+	'#default_value' => ''
+  );
+
+  $form['options']['title'] = array(
+	'#type' => 'textfield',
+	'#title' => t('Title'),
+	'#default_value' => ''
+  );
+
 
   // Similar to a form_alter, but we want this to run first so that media.types.inc
   // can add the fields specific to a given type (like alt tags on media).

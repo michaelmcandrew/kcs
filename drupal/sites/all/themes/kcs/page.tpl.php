@@ -84,10 +84,20 @@
 	</div>
 	
 	<div id="top_nav">
-    	<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main_menu'))); ?>
-		<div id="secondary-menu-wrap">
-        	<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary_menu', 'class' => array('links', 'inline', 'clearfix')))); ?>
-		</div>
+		<?php if ($_SERVER['REQUEST_URI'] == '/spanish') : ?>
+			<div id="top_nav">
+				<ul id="main_menu">
+					<li><a href="/">Home</a></li>
+				</ul>		
+				<div id="secondary-menu-wrap"></div>
+			</div>
+
+		<?php else : ?>
+    		<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main_menu'))); ?>
+			<div id="secondary-menu-wrap">
+	        	<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary_menu', 'class' => array('links', 'inline', 'clearfix')))); ?>
+			</div>
+		<?php endif; ?>	
     </div>
 
 	
@@ -108,6 +118,7 @@
 			<?php endif; ?>
 			<?php if ($tabs): ?><?php print render($tabs); ?><?php endif; ?>
 			<?php print render($page['content']); ?>
+
 		</div>
 		
 		<div class="clear"></div>
