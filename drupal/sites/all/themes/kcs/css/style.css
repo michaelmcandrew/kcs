@@ -124,9 +124,9 @@ body {
 }
 
 #header { 
-	height: 150px;
+	height: 160px;
 	margin-bottom: 20px;
-	background: url(../images/world.png) no-repeat 480px 0;
+	background: url(../images/world.png) no-repeat 480px 12px;
 	position: relative;
 }
 
