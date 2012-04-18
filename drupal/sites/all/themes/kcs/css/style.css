@@ -124,7 +124,7 @@ body {
 }
 
 #header { 
-	height: 135px;
+	height: 150px;
 	margin-bottom: 20px;
 	background: url(../images/world.png) no-repeat 480px 0;
 	position: relative;
@@ -133,7 +133,7 @@ body {
 #header_left {
 	width: 530px;
 	float: left;
-	padding-top: 40px;
+	padding-top: 25px;
 }
 
 .region-header {
@@ -218,6 +218,7 @@ body {
 
 /*...NAVIGATION...*/
 #top_nav { 
+	clear: both;
 	position: relative;
 	font-family: ff-tisa-web-pro, georgia, serif;
 }

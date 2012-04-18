@@ -70,6 +70,12 @@
 <div id="wrapper">
 	<div id="header">	
 		<div id="header_left">	
+			<?php if ($logo): ?>
+				<a href="<?php print $front_page; ?>" rel="home" id="logo">
+					<img src="<?php print $logo; ?>" alt="<?php print $site_name; ?>" />
+				</a>
+			<?php endif; ?>
+			
 			<?php if ($site_name || $site_slogan): ?>
 				<?php if ($site_name): ?>
 					<h1><a href="<?php print $front_page; ?>"><?php print $site_name; ?></a></h1>
