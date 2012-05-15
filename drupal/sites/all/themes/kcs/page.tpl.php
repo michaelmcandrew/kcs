@@ -90,7 +90,7 @@
 	</div>
 	
 	<div id="top_nav">
-		<?php if ($_SERVER['REQUEST_URI'] == '/spanish') : ?>
+		<?php if ($_SERVER['REQUEST_URI'] == '/spanish' || '/french' ) : ?>
 			<div id="top_nav">
 				<ul id="main_menu">
 					<li><a href="/">Home</a></li>

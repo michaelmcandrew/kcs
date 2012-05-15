@@ -2,79 +2,62 @@
 .clear { 
 	clear: both;
 }
-
 .left {
 	float: left;
 }
-
 .right {
 	float: right;
 }
-
 img.right, 
 .right img, 
 .front .content img.right, 
 .front .content .right img{
 	margin-left: 10px;
 }
-
 img.left, 
 .left img,
 .front .content img.left, 
 .front .content .left img {
 	margin-right: 10px;
 }
-
 .content img { 
 	margin: 0 10px 10px 10px;
 }
-
 .content img.file-icon { 
 	margin: 0;
 }
-
 .front .content img { 
 	margin: 0;
 }
-
 a { 
 	color: #242424;
 	text-decoration: none;
 }
-
 a:hover, #main a.btn:hover {
 	text-decoration: none;
 }
-
 #main a:hover {
 	text-decoration: underline;
 }
-
 #content_wrap a, #left_col a {
 	color: #560251;
 }
-
 p {
 	margin: 8px 0;
 }
-
 input { 
 	padding: 1px 5px;
 	border: 1px solid #c2c2c2;
 }
-
 .form-item-search-block-form input {		
 	color: #a1a1a1;
 }
-
 a.btn, .btn { 
 	color: #fff;
 }
-
 .node-page a {
 	background-color: #ece7ec;
 }
-
 .btn,
 #block-user-login input#edit-submit {
 	padding: 6px 15px 9px;
@@ -88,21 +71,17 @@ a.btn, .btn {
   	-webkit-border-radius: 6px;
   	border-radius: 6px;
 }
-
 h1, h2, h3, h4, h5, h6 {
 	font-family: ff-tisa-web-pro, georgia, serif;
 }
-
 #main ul { 
 	list-style: disc outside none;
 	padding-left: 30px;
 }
-
 #main ol {
 	list-style: decimal outside none;
 	padding-left: 36px;
 }
-
 ul li.leaf, ul li.expanded, ul li.collapsed,
 ul.menu li.leaf, ul.menu li.expanded, ul.menu li.collapsed {
 	list-style: none outside none;
@@ -110,37 +89,31 @@ ul.menu li.leaf, ul.menu li.expanded, ul.menu li.collapsed {
 	padding: 0;
 }
 
-
 /*...STRUCTURE...*/
 body { 
 	color: #302F30;
 	font-size: 62.5%;
 }
-
 #wrapper { 
 	width: 960px;
 	margin: 0 auto;
 	font-family: helvetica, arial, sans-serif;
 }
-
 #header { 
 	height: 160px;
 	margin-bottom: 20px;
 	background: url(../images/world.png) no-repeat 480px 12px;
 	position: relative;
 }
-
 #header_left {
-	width: 530px;
+	width: 300px;
 	float: left;
 	padding-top: 25px;
 }
-
 .region-header {
-	width: 430px;
+	width: 600px;
 	float: right;
 }
-
 #main {
 	clear: both;
 	margin-top: 10px;
@@ -148,13 +121,11 @@ body {
 	font-size: 1.4em;
 	line-height: 1.5em;
 }
-
 #content_wrap {
 	width: 700px;
 	padding: 15px 10px 10px 10px;
 	float: left;
 }
-
 #right_col, 
 #left_col { 
 	width: 230px;
@@ -163,7 +134,6 @@ body {
 	padding-top: 15px;
 	float: left;
 }
-
 #right_col {
 	width: 220px;
 	padding-right: 10px;
