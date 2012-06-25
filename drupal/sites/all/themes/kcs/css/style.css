@@ -301,7 +301,8 @@ body {
 }
 
 #hp_images img.first, 
-#hp_left { 
+#hp_left,
+#block-block-6 img { 
 	margin-right: 20px;
 }
 
